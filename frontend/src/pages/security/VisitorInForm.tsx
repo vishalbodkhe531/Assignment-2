@@ -24,46 +24,50 @@ export default function VisitorInForm() {
   };
 
   return (
-    <Card className="w-[500px]">
-      <CardHeader>
-        <CardTitle>Visitor IN</CardTitle>
-      </CardHeader>
+    <div className="flex justify-center items-center flex-col h-screen ">
+      <Card className="w-[500px]">
+        <CardHeader>
+          <CardTitle>Visitor IN</CardTitle>
+        </CardHeader>
 
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label>Visitor Name</Label>
-            <Input name="name" onChange={handleChange} />
-          </div>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label>Visitor Name</Label>
+              <Input name="name" required onChange={handleChange} />
+            </div>
 
-          <div>
-            <Label>Mobile</Label>
-            <Input name="mobile" onChange={handleChange} />
-          </div>
+            <div>
+              <Label>Mobile</Label>
+              <Input name="mobile" required onChange={handleChange} />
+            </div>
 
-          <div>
-            <Label>Email</Label>
-            <Input name="email" onChange={handleChange} />
-          </div>
+            <div>
+              <Label>Email</Label>
+              <Input name="email" required onChange={handleChange} />
+            </div>
 
-          <div>
-            <Label>Person To Meet</Label>
-            <Input name="personToMeet" onChange={handleChange} />
-          </div>
+            <div>
+              <Label>Person To Meet</Label>
+              <Input name="personToMeet" required onChange={handleChange} />
+            </div>
 
-          <div>
-            <Label>Department</Label>
-            <Input name="department" onChange={handleChange} />
-          </div>
+            <div>
+              <Label>Department</Label>
+              <Input name="department" required onChange={handleChange} />
+            </div>
 
-          <div>
-            <Label>Purpose</Label>
-            <Input name="purpose" onChange={handleChange} />
-          </div>
+            <div>
+              <Label>Purpose</Label>
+              <Input name="purpose" required onChange={handleChange} />
+            </div>
 
-          <Button className="w-full">Submit</Button>
-        </form>
-      </CardContent>
-    </Card>
+            <Button className="w-full cursor-pointer" type="submit">
+              Submit
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

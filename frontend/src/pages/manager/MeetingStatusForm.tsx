@@ -10,25 +10,27 @@ import {
 
 export default function MeetingStatusForm() {
   return (
-    <div className="w-[500px] space-y-4">
-      <Input placeholder="Visitor Name" />
-      <Input placeholder="Employee Name" />
+    <div className="flex justify-center items-center flex-col h-screen ">
+      <div className="space-y-4 w-full max-w-md p-10 border rounded">
+        <Input placeholder="Visitor Name" />
+        <Input placeholder="Employee Name" />
 
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="Meeting Status" />
-        </SelectTrigger>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Meeting Status" />
+          </SelectTrigger>
 
-        <SelectContent>
-          <SelectItem value="approved">Approved</SelectItem>
-          <SelectItem value="rejected">Rejected</SelectItem>
-          <SelectItem value="pending">Pending</SelectItem>
-        </SelectContent>
-      </Select>
+          <SelectContent>
+            <SelectItem value="approved">Approved</SelectItem>
+            <SelectItem value="rejected">Rejected</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+          </SelectContent>
+        </Select>
 
-      <Input placeholder="Remarks" />
+        <Input placeholder="Remarks" />
 
-      <Button className="w-full">Update Status</Button>
+        <Button className="w-full cursor-pointer">Update Status</Button>
+      </div>
     </div>
   );
 }

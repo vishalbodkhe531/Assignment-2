@@ -7,9 +7,7 @@ export default function VisitorList() {
 
   return (
     <div className="p-10">
-
       <h2 className="text-2xl font-bold mb-6">Visitor List</h2>
-
       <table className="w-full border">
 
         <thead>
