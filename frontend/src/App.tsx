@@ -1,12 +1,19 @@
-import { Button } from "./components/ui/button";
+import { Suspense, lazy } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Login from "./pages/auth/Login";
+// const Login = lazy(() => import("@/pages/auth/Login"));
 
 function App() {
   return (
-    <div className="bg-red-500">
-      <div className="">
-        <Button>Click</Button>
-      </div>
-    </div>
+    <Router>
+      {/* <Suspense fallback={"Loading..."}> */}
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+      {/* </Suspense> */}
+      {/* <Toaster position="bottom-center" /> */}
+    </Router>
   );
 }
 
