@@ -71,3 +71,33 @@ export const visitorIn = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const visitorOut = async (req: Request, res: Response) => {
+  try {
+    const { visitorNumber, visitOutTime, totalTimeSpent } = req.body;
+
+    const visitor = await Visitor.findOneAndUpdate(
+      { visitorNumber },
+      {
+        visitOutTime,
+        totalTimeSpent,
+      },
+      { new: true },
+    );
+
+    if (!visitor) {
+      return res.status(404).json({
+        message: "Visitor not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Visitor exit updated successfully",
+      data: visitor,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
