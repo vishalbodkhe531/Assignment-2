@@ -6,8 +6,6 @@ export const createUserByAdmin = async (req: Request, res: Response) => {
   try {
     const { username, password, role } = req.body;
 
-    console.log("Creating user with data:", { username, password, role });
-
     if (!username || !password || !role) {
       return res.status(400).json({
         message: "All fields are required",

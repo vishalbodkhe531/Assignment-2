@@ -11,40 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const navigate = useNavigate();
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const data = {
-  //     username,
-  //     password,
-  //     role,
-  //   };
-
-  //   console.log(data);
-
-  //   // Frontend role-based navigation
-  //   if (role === "security") {
-  //     navigate("/security/visitor-in");
-  //   } else if (role === "manager") {
-  //     navigate("/manager/meeting-status");
-  //   } else if (role === "hr") {
-  //     navigate("/hr/visitor-list");
-  //     // if (role === "security") {
-  //     //   navigate("/security/visitor-in");
-  //     // } else if (role === "manager") {
-  //     //   navigate("/manager/meeting-status");
-  //     // } else if (role === "hr") {
-  //     //   navigate("/hr/visitor-list");
-  //     // }
-  //   }
-  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,13 +40,14 @@ export default function Login() {
       const result = await res.json();
 
       if (!res.ok) {
-        alert(result.message);
+        toast.error(result.message || "Login failed ");
         return;
       }
 
+      toast.success("Login successful");
+
       console.log(result);
 
-      // role based navigation
       if (role === "security") {
         navigate("/security/visitor-in");
       } else if (role === "manager") {
@@ -83,6 +57,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
+      toast.error("Server error. Please try again.");
     }
   };
 

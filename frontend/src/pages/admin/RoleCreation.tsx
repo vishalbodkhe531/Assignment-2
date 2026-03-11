@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function RoleCreation() {
   const navigate = useNavigate();
@@ -27,18 +28,32 @@ export default function RoleCreation() {
       role,
     };
 
-    const response = await fetch("/api/user/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch("/api/user/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const result = await response.json();
-    console.log(result);
+      const result = await response.json();
 
-    console.log(data);
+      if (!response.ok) {
+        toast.error(result.message || "Failed to create user");
+        return;
+      }
+
+      toast.success("User created successfully");
+      console.log(result);
+      setPassword("");
+      setRole("");
+      setUsername("");
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Server error. Please try again.");
+    }
   };
 
   return (
