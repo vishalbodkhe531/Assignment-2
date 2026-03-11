@@ -11,6 +11,7 @@ export interface IVisitor extends Document {
   visitInTime: string;
   visitOutTime: string;
   totalTimeSpent: string;
+  photo?: string;
 }
 
 const VisitorSchema: Schema = new Schema(
@@ -49,6 +50,9 @@ const VisitorSchema: Schema = new Schema(
       type: String,
     },
     totalTimeSpent: {
+      type: String,
+    },
+    photo: {
       type: String,
     },
   },

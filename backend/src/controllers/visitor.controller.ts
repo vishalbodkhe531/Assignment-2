@@ -30,3 +30,44 @@ export const getVisitors = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const visitorIn = async (req: Request, res: Response) => {
+  try {
+    const {
+      visitorNumber,
+      visitorName,
+      mobile,
+      contactPerson,
+      purpose,
+      numberOfPersons,
+      vehicleNumber,
+      visitInTime,
+      photo,
+    } = req.body;
+
+    const visitor = new Visitor({
+      visitorNumber,
+      visitorName,
+      mobile,
+      contactPerson,
+      purpose,
+      numberOfPersons,
+      vehicleNumber,
+      visitInTime,
+      photo,
+    });
+
+    await visitor.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Visitor entry created",
+      data: visitor,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error creating visitor entry",
+    });
+  }
+};

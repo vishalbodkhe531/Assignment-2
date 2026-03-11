@@ -1,7 +1,7 @@
+import RoleCreation from "@/components/admin/RoleCreation";
+import VisitorDetails from "@/components/admin/VisitorDetails";
+import VisitorFormCreation from "@/components/admin/VisitorFormCreation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import RoleCreation from "./RoleCreation";
-import VisitorFormCreation from "./VisitorFormCreation";
-import VisitorDetails from "./VisitorDetails";
 
 export default function AdminDashboard() {
   return (
