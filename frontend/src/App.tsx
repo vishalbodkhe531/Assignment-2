@@ -6,6 +6,8 @@ import MeetingStatusForm from "./pages/manager/MeetingStatusForm";
 import { ToastContainer } from "react-toastify";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import SecurityDashboard from "./pages/security/SecurityDashboard";
+import Home from "./pages/Home/Home";
+
 function App() {
   return (
     <>
@@ -13,17 +15,13 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
 
-          {/* security routes */}
+          {/* this route for Security,Manager,HR 1st admin create role , after get pass from admin then login */}
+          <Route path="/login" element={<Login />} /> 
+
           <Route path="/security/dashboard" element={<SecurityDashboard />} />
-          
-          {/* manager routes */}
-          <Route
-            path="/manager/meeting-status"
-            element={<MeetingStatusForm />}
-          />
-          <Route path="/hr/visitor-list" element={<VisitorList />} />
+
 
           {/* admin routes */}
           <Route path="/admin" element={<AdminDashboard />} />
