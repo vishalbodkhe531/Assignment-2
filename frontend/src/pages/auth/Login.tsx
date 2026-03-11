@@ -18,7 +18,35 @@ export default function Login() {
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+
+  //   const data = {
+  //     username,
+  //     password,
+  //     role,
+  //   };
+
+  //   console.log(data);
+
+  //   // Frontend role-based navigation
+  //   if (role === "security") {
+  //     navigate("/security/visitor-in");
+  //   } else if (role === "manager") {
+  //     navigate("/manager/meeting-status");
+  //   } else if (role === "hr") {
+  //     navigate("/hr/visitor-list");
+  //     // if (role === "security") {
+  //     //   navigate("/security/visitor-in");
+  //     // } else if (role === "manager") {
+  //     //   navigate("/manager/meeting-status");
+  //     // } else if (role === "hr") {
+  //     //   navigate("/hr/visitor-list");
+  //     // }
+  //   }
+  // };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {
@@ -27,15 +55,34 @@ export default function Login() {
       role,
     };
 
-    console.log(data);
+    try {
+      const res = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    // Frontend role-based navigation
-    if (role === "security") {
-      navigate("/security/visitor-in");
-    } else if (role === "manager") {
-      navigate("/manager/meeting-status");
-    } else if (role === "hr") {
-      navigate("/hr/visitor-list");
+      const result = await res.json();
+
+      if (!res.ok) {
+        alert(result.message);
+        return;
+      }
+
+      console.log(result);
+
+      // role based navigation
+      if (role === "security") {
+        navigate("/security/visitor-in");
+      } else if (role === "manager") {
+        navigate("/manager/meeting-status");
+      } else if (role === "hr") {
+        navigate("/hr/visitor-list");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -72,7 +119,10 @@ export default function Login() {
             <div>
               <Label>Select Role</Label>
 
-              <Select onValueChange={(value) => setRole(value as string)} required>
+              <Select
+                onValueChange={(value) => setRole(value as string)}
+                required
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Choose role" />
                 </SelectTrigger>

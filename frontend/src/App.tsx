@@ -11,10 +11,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+
         <Route path="/security/visitor-in" element={<VisitorInForm />} />
         <Route path="/security/visitor-out" element={<VisitorOutForm />} />
+
         <Route path="/manager/meeting-status" element={<MeetingStatusForm />} />
         <Route path="/hr/visitor-list" element={<VisitorList />} />
+        
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Router>

@@ -18,7 +18,7 @@ export default function RoleCreation() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {
@@ -27,41 +27,21 @@ export default function RoleCreation() {
       role,
     };
 
-    console.log(data);
+    const response = await fetch("/api/user/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-    // Frontend role-based navigation
-    if (role === "security") {
-      navigate("/security/visitor-in");
-    } else if (role === "manager") {
-      navigate("/manager/meeting-status");
-    } else if (role === "hr") {
-      navigate("/hr/visitor-list");
-    }
+    const result = await response.json();
+    console.log(result);
+
+    console.log(data);
   };
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const data = {
-  //     username,
-  //     password,
-  //     role,
-  //   };
-
-  //   console.log(data);
-
-  //   // Frontend role-based navigation
-  //   if (role === "security") {
-  //     navigate("/security/visitor-in");
-  //   } else if (role === "manager") {
-  //     navigate("/manager/meeting-status");
-  //   } else if (role === "hr") {
-  //     navigate("/hr/visitor-list");
-  //   }
-  // };
-
   return (
-    // <div className="flex min-h-screen items-center justify-center bg-gray-100">
     <div className="">
       <Card className="w-[400px] shadow-lg">
         <CardHeader>
