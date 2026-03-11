@@ -1,12 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Login from "./pages/auth/Login";
-import VisitorList from "./pages/hr/VisitorList";
-import MeetingStatusForm from "./pages/manager/MeetingStatusForm";
 
 import { ToastContainer } from "react-toastify";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import SecurityDashboard from "./pages/security/SecurityDashboard";
 import Home from "./pages/Home/Home";
+import SecurityDashboard from "./pages/security/SecurityDashboard";
 
 function App() {
   return (
