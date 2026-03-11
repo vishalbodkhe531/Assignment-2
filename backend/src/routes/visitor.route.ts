@@ -1,10 +1,9 @@
 import express from "express";
 import { createVisitor, getVisitors } from "../controllers/visitor.controller";
 
-const visitorRouter = express.Router();
+const router = express.Router();
 
-visitorRouter.post("/create", createVisitor);
+router.post("/create-visitor", createVisitor);
+router.get("/get-visitors", getVisitors);
 
-visitorRouter.get("/all", getVisitors);
-
-export default visitorRouter;
+export default router;
